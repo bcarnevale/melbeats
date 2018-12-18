@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Hawker Hall",
+        "suburb": "Windsor",
+        "style": "Modern Asian Tapas",
+        "price": "$"
+    },
+    {
+        "id": 2,
+        "name": "Hanoi Hannah",
+        "suburb": "Richmond",
+        "style": "Vietnamese",
+        "price": "$$"
+    },
+    {
+        "id": 3,
+        "name": "Shop Ramen",
+        "suburb": "Collingwood",
+        "style": "Ramen",
+        "price": "$"
+    }
+]
