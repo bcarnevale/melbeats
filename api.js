@@ -41,7 +41,6 @@ mongoose.connection.on('error', () => {
 });
 
 app.use(cors());
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -66,7 +65,7 @@ app.get('/places/:id', (req, res) => {
     // }
     // return res.send([place])
 
-    const { id } = req.params;
+    const id = req.params._id;
     Places.findOne({ id })
         .then(doc => res.send(doc));
 })
@@ -83,9 +82,8 @@ app.post('/places', (req, res) => {
 
     // return res.send(place)
 
-    const { id, name, suburb, style, price } = req.body;
+    const { name, suburb, style, price } = req.body;
     const places = new Places({
-            id,
             name,
             suburb,
             style,
@@ -93,6 +91,7 @@ app.post('/places', (req, res) => {
         });
         places.save()
             .then(doc => res.send(doc))
+
 })
 
 app.put('/places/:id', (req, res) => {
@@ -127,14 +126,14 @@ app.put('/places/:id', (req, res) => {
 
     // return res.send(place)
 
-    const { id } = req.params
+    const id = req.params._id
     const { name, suburb, style, price } = req.body
 
     Places.findOneAndUpdate(
         // how we are finding the selection
         { id },
         // what we want to update
-        { id, name, suburb, style, price },
+        { name, suburb, style, price },
         {
             new: true,
             runValidators: true
@@ -156,11 +155,12 @@ app.delete('/places/:id', (req, res) => {
 
     // return res.send(place)
 
-    const { id } = req.params
+    const id = req.params._id
 
     Places.findOneAndRemove({ id })
     .then(doc => res.send(doc));
 })
+
 
 app.listen(5000, () => {
     console.log('listening on port 5000')
